@@ -48,8 +48,8 @@ fn partition_vec(vector: &mut Vec<u32>, start: usize, end: usize) -> usize {
 }
 
 fn swap_elements<T: Copy>(vector: &mut Vec<T>, idx_one: usize, idx_two: usize) {
-  let tmp = vector[idx_one].clone();
-  vector[idx_one] = vector[idx_two].clone();
+  let tmp = vector[idx_one];
+  vector[idx_one] = vector[idx_two];
   vector[idx_two] = tmp;
 }
 
