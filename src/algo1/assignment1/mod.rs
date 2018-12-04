@@ -37,8 +37,7 @@ fn count_splits(left_vec: Vec<u32>, right_vec: Vec<u32>) -> (Vec<u32>, u32) {
 #[cfg(test)]
 mod test {
   use super::*;
-  use std::fs::File;
-  use std::io::{BufRead, BufReader};
+  use algo1::tests::helpers;
 
   #[test]
   fn solves_simple_min_inversions() {
@@ -53,14 +52,9 @@ mod test {
 
   #[test]
   fn solves_the_homework_problem() {
-    let mut number_vec: Vec<u32> = vec![];
-    let file = File::open("src/algo1/assignment1/assignment1.txt").unwrap();
-    let reader = BufReader::new(file);
-    for line in reader.lines() {
-      let number_str = line.unwrap();
-      number_vec.push(number_str.parse::<u32>().unwrap());
-    }
+    let num_vec: Vec<u32> =
+      helpers::load_vec_from_file("src/algo1/assignment1/assignment1.txt");
 
-    assert_eq!(count_inversions(number_vec), 2407905288);
+    assert_eq!(count_inversions(num_vec), 2407905288);
   }
 }

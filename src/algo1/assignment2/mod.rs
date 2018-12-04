@@ -56,8 +56,11 @@ fn swap_elements<T: Copy>(vector: &mut Vec<T>, idx_one: usize, idx_two: usize) {
 #[cfg(test)]
 mod test {
   use super::*;
-  use std::fs::File;
-  use std::io::{BufRead, BufReader};
+  use algo1::tests::helpers;
+
+  fn load_hw_vector() -> Vec<u32> {
+    helpers::load_vec_from_file("src/algo1/assignment2/assignment2.txt")
+  }
 
   #[test]
   fn sorts_array_in_place() {
@@ -75,17 +78,6 @@ mod test {
     quicksort(&mut simple);
 
     assert_eq!(simple, vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
-  }
-
-  fn load_hw_vector() -> Vec<u32> {
-    let mut number_vec: Vec<u32> = vec![];
-    let file = File::open("src/algo1/assignment2/assignment2.txt").unwrap();
-    let reader = BufReader::new(file);
-    for line in reader.lines() {
-      let number_str = line.unwrap();
-      number_vec.push(number_str.parse::<u32>().unwrap());
-    }
-    number_vec
   }
 
   #[test]
